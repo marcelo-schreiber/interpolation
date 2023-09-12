@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
   readPoints(&path);
 
   double t = timestamp();
-  double y = lagrangeInterpolation(path, xe);
+  double y = newtonInterpolation(path, xe);
   t = timestamp() - t;
   printf("Aproximation: %f @ %f\n", y, t);
 
