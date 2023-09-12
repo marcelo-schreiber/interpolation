@@ -52,7 +52,7 @@ distcheck:
 		@make dist
 		@tar -xvf $(DISTDIR).tar
 		@cd $(DISTDIR) && make
-		@cd $(DISTDIR) && make clean
+		@cd $(DISTDIR) && make check
 		@rm -rf $(DISTDIR)
 		@echo "Tudo certo!"
 
