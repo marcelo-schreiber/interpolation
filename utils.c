@@ -28,13 +28,10 @@ rtime_t timestamp (void)
  */
 string_t markerName(string_t baseName, int n)
 {
-    string_t mark = (string_t) malloc( (strlen(baseName)+1) + numDigits(n) + 1 );
+  string_t mark = (string_t) malloc( (strlen(baseName)+1) + numDigits(n) + 1 );
 
   sprintf(mark, "%s_%u", baseName,n);
 
-  // printf("*** %s\n", mark);
-
   return mark;
-
 }
 
