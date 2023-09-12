@@ -47,4 +47,19 @@ dist: purge
 		@tar -cvf $(DISTDIR).tar $(addprefix ./$(DISTDIR)/, $(DISTFILES))
 		@rm -f $(DISTDIR)
 
+distcheck:
+		@echo "Verificando se o código compila ..."
+		@make dist
+		@tar -xvf $(DISTDIR).tar
+		@cd $(DISTDIR) && make
+		@cd $(DISTDIR) && make clean
+		@rm -rf $(DISTDIR)
+		@echo "Tudo certo!"
+
+check:
+		@echo "Verificando se o tem a saida correta..."
+		./$(PROJ_NAME) 8.0 < input.in > output.out
+		@grep 16. output.out
+		@rm -f output.out
+		
 .PHONY: all clean purge dist
