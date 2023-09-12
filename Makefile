@@ -16,8 +16,8 @@ CC=gcc
 CC_FLAGS=-c         \
          -Wall      \
  
-DISTFILES = *.c *.h README* Makefile
-DISTDIR = `basename ${PWD}`
+DISTFILES = *.c *.h README* Makefile input.in
+DISTDIR = `basename mars22-fqv21`
 
 #
 # Compilation and linking
@@ -41,7 +41,7 @@ purge:  clean
 		@echo "Limpando tudo ..."
 		@rm -f $(PROG) *.o core a.out interpola $(DISTDIR) $(DISTDIR).tar
 
-dist: purge
+dist:
 		@echo "Gerando arquivo de distribuição ($(DISTDIR).tar) ..."
 		@ln -s . $(DISTDIR)
 		@tar -cvf $(DISTDIR).tar $(addprefix ./$(DISTDIR)/, $(DISTFILES))
@@ -53,7 +53,7 @@ distcheck:
 		@tar -xvf $(DISTDIR).tar
 		@cd $(DISTDIR) && make
 		@cd $(DISTDIR) && make check
-		@rm -rf $(DISTDIR)
+		@rm -rf ./$(DISTDIR)
 		@echo "Tudo certo!"
 
 check:
@@ -62,4 +62,4 @@ check:
 		@grep 16. output.out
 		@rm -f output.out
 		
-.PHONY: all clean purge dist
+.PHONY: all
