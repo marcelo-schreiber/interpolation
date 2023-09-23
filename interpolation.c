@@ -1,11 +1,18 @@
 #include "interpolation.h"
 
-void readPoints(path_t *path) {
+int readPoints(path_t *path, double xe) {
     int i;
+    int pertence = 0;
     int n = path->num_points;
     for (i = 0; i < n; i++) {
         scanf("%lf %lf", &path->points[i].x, &path->points[i].y);
+    
+        if (path->points[i].x == xe || path->points[i].y == xe) 
+            pertence = 1;
+
     }
+
+    return pertence;
 }
 
 void printPoints(path_t *path) {
@@ -41,11 +48,9 @@ double newtonInterpolation(path_t path, double xe) {
     double sum;
     double y = 0;
     double *divided_diff = (double *) malloc(n * sizeof(double));
-    double *divisor = (double *) malloc(n * sizeof(double));
-    for (i = 0; i < n; i++) {
+    
+    for (i = 0; i < n; i++) 
         divided_diff[i] = path.points[i].y;
-        divisor[i] = 1;
-    }
 
     for (i = 1; i < n; i++) {
         for (j = n - 1; j >= i; j--) {
