@@ -18,12 +18,18 @@ int main(int argc, char **argv) {
   path.points = malloc(n * sizeof(point_t));
   path.num_points = n;
   
-  readPoints(&path);
+   if (readPoints(&path, xe) != 1)
+    fprintf(stderr, "Error: xe nao pertence ao intervalo\n");
 
   double t = timestamp();
   double y = newtonInterpolation(path, xe);
   t = timestamp() - t;
-  printf("Aproximation: %f @ %f\n", y, t);
+  printf("f(%d): %f @ %f\n", xe, y, t);
+  
+  t = timestamp();
+  y = newtonInterpolation(path, xe);
+  t = timestamp() - t;
+  printf("f(%d): %f @ %f\n", xe, y, t);
 
   free(path.points);
   return 0;
