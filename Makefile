@@ -66,8 +66,8 @@ distcheck:
 
 check:
 		@echo "Verificando se o tem a saida correta..."
-		./$(PROJ_NAME) 8.0 < pontos.in > output.out
-		@grep 16. output.out
+		./$(PROJ_NAME) 3.5 < pontos.in > output.out
+		@grep 6. output.out
 		@rm -f output.out
 		
 .PHONY: all
