@@ -17,7 +17,13 @@ int main(int argc, char **argv)
 
   int xe = strtod(argv[1], NULL);
 
-  scanf("%d", &n);
+  int res = scanf("%d", &n);
+
+  if (res != 1)
+  {
+    fprintf(stderr, "Error: n inválido\n");
+    exit(EXIT_FAILURE);
+  }
   path.points = malloc(n * sizeof(point_t));
   path.num_points = n;
 
@@ -45,7 +51,7 @@ int main(int argc, char **argv)
 
   tLagrange = timestamp() - tLagrange;
 
-  printf("%lf\n%lf\n%lf\n%lf", yLagrange, yNewton, tLagrange, tNewton);
+  printf("%lf\n%lf\n%lf\n%lf\n", yLagrange, yNewton, tLagrange, tNewton);
 
   LIKWID_MARKER_CLOSE;
 

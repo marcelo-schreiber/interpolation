@@ -9,7 +9,12 @@ int readPoints(path_t *path, double xe)
 
     for (i = 0; i < n; i++)
     {
-        scanf("%lf %lf", &path->points[i].x, &path->points[i].y);
+        int res = scanf("%lf %lf", &path->points[i].x, &path->points[i].y);
+        if (res != 2)
+        {
+            printf("Erro ao ler os pontos \n");
+            return 0;
+        }
     }
 
     /* Check if xe belongs to the interval */
