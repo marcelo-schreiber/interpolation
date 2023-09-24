@@ -24,7 +24,7 @@ CC_FLAGS=-c         \
  						 -I{LIKWID_INCLUDE} \
  						 -L{LIKWID_LIB} \
 
-DISTFILES = *.c *.h README* Makefile pontos.in
+DISTFILES = *.c *.h README* Makefile pontos.in likwid.py
 DISTDIR = `basename mars22-fqv21`
 
 #
@@ -42,18 +42,17 @@ main.o: main.c $(H_SOURCE)
 		$(CC) $< $(CC_FLAGS) $(LIKWID_FLAGS) -o $@ -llikwid
  
 clean:
-		@echo "Limpando sujeira ..."
 		@rm -f *~ *.bak
 
 purge:  clean
-		@echo "Limpando tudo ..."
-		@rm -f $(PROG) *.o core a.out interpola $(DISTDIR) $(DISTDIR).tar
+		@rm -f $(PROG) *.o core a.out interpola 
+		@rm -rf $(DISTDIR) $(DISTDIR).tar
 
 dist:
 		@echo "Gerando arquivo de distribuição ($(DISTDIR).tar) ..."
 		@ln -s . $(DISTDIR)
 		@tar -cvf $(DISTDIR).tar $(addprefix ./$(DISTDIR)/, $(DISTFILES))
-		@rm -f $(DISTDIR)
+		@rm -rf $(DISTDIR)
 
 distcheck:
 		@echo "Verificando se o código compila ..."
