@@ -24,7 +24,7 @@ CC_FLAGS=-c         \
  						 -I{LIKWID_INCLUDE} \
  						 -L{LIKWID_LIB} \
 
-DISTFILES = *.c *.h README* Makefile input.in
+DISTFILES = *.c *.h README* Makefile pontos.in
 DISTDIR = `basename mars22-fqv21`
 
 #
