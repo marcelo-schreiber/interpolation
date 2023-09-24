@@ -21,8 +21,8 @@ CC_FLAGS=-c         \
 				 -lm 			\
 
  LIKWID_FLAGS=-DLIKWID_PERFMON \
- 						 -I/usr/local/include\
- 						 -L/usr/local/includelib
+ 						 -I{LIKWID_INCLUDE} \
+ 						 -L{LIKWID_LIB} \
 
 DISTFILES = *.c *.h README* Makefile input.in
 DISTDIR = `basename mars22-fqv21`
