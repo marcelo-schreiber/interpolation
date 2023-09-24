@@ -13,6 +13,6 @@ typedef struct {
 
 
 void printPoints(path_t *path);
-void readPoints(path_t *path);
+int readPoints(path_t *path, double xe);
 double lagrangeInterpolation(path_t path, double xe);
 double newtonInterpolation(path_t path, double xe);
