@@ -14,8 +14,16 @@ CC=gcc
  
 # Flags for compiler
 CC_FLAGS=-c         \
+				 -O3				\
+				 -mavx			\
+				 -march=native	\
          -Wall      \
- 
+				 -lm 			\
+
+ LIKWID_FLAGS=-DLIKWID_PERFMON \
+ 						 -I/usr/local/include\
+ 						 -L/usr/local/includelib
+
 DISTFILES = *.c *.h README* Makefile input.in
 DISTDIR = `basename mars22-fqv21`
 
@@ -25,13 +33,13 @@ DISTDIR = `basename mars22-fqv21`
 all: $(PROJ_NAME)
  
 $(PROJ_NAME): $(OBJ)
-		$(CC) -o $@ $^
+		$(CC) $(LIKWID_FLAGS) $^ -o $@ -llikwid
  
 %.o: %.c %.h
-		$(CC) -o $@ $< $(CC_FLAGS) -lm
+		$(CC) -o $@ $< $(CC_FLAGS) $(LIKWID_C)
  
 main.o: main.c $(H_SOURCE)
-		$(CC) -o $@ $< $(CC_FLAGS)
+		$(CC) $< $(CC_FLAGS) $(LIKWID_FLAGS) -o $@ -llikwid
  
 clean:
 		@echo "Limpando sujeira ..."
@@ -58,7 +66,7 @@ distcheck:
 
 check:
 		@echo "Verificando se o tem a saida correta..."
-		./$(PROJ_NAME) 8.0 < input.in > output.out
+		./$(PROJ_NAME) 8.0 < pontos.in > output.out
 		@grep 16. output.out
 		@rm -f output.out
 		
