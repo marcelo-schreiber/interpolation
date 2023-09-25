@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     exit(EXIT_FAILURE);
   }
 
-  int xe = strtod(argv[1], NULL);
+  double xe = strtod(argv[1], NULL);
 
   int res = scanf("%d", &n);
 
@@ -24,6 +24,7 @@ int main(int argc, char **argv)
     fprintf(stderr, "Error: n inválido\n");
     exit(EXIT_FAILURE);
   }
+  
   path.points = malloc(n * sizeof(point_t));
   path.num_points = n;
 
